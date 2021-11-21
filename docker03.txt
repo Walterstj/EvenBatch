@@ -1,0 +1,89 @@
+1  docker ps -a
+    2  docker rm -f $(docker ps -a -q)
+    3  docker container run -it --name c1 --mount type=tmpfs,destination=/app -d nginx
+    4  docker inspect c1
+    5  docker exec -it c1 bash
+    6  docker rm -f c1
+    7  docker volume --help
+    8  docker volume ls
+    9  docker volume rm demo-vol
+   10  docker volume ls
+   11  docker volume --help
+   12  ls /var/lib/docker/volumes/
+   13  docker volume demo-vol
+   14  docker volume create demo-vol
+   15  ls /var/lib/docker/volumes/
+   16  ls /var/lib/docker/volumes/demo-vol/_data/
+   17  docker container run -it --name c2 --mount source=demo-vol,destination=/logfiles -d ubuntu
+   18  docker exec -it c2 bash
+   19  ls /var/lib/docker/volumes/demo-vol/_data/
+   20  docker volume inspect demo-vol
+   21  docker container inspect c2
+   22  docker rm -f c1 c2
+   23  docker ps -a
+   24  ls /var/lib/docker/volumes/demo-vol/_data/
+   25  docker container run -it --name c1 --mount source=demo-vol,destination=/log -d centos
+   26  docker inspect c1
+   27  docker exec -it c1 bash
+   28  docker container run -it --name c2 --mount source=demo-vol,destination=/testlog -d ubuntu
+   29  docker exec -it c2 bash
+   30  docker exec -it c1 bash
+   31  docker rm -f c1 c2
+   32  ls
+   33  mkdir shared
+   34  docker container run -it --name c1 -v /home/ubuntu/shared:/demo -d ubuntu
+   35  ls shared/
+   36  docker exec -it c1 bash
+   37  ls shared/
+   38  docker rm -f c1
+   39  docker ps -a
+   40  ls shared/
+   41  docker container run -it --name c2 -v /home/ubuntu/shared:/demo -d centos
+   42  ls shared/
+   43  docker exec -it c2 bash
+   44  docker ps -a
+   45  docker inspect c2
+   46  docker ps -a
+   47  docker rm -f c2
+   48  ip a
+   49  docker container run -it --name c1 -d ubuntu
+   50  ip a
+   51  docker inspect c1
+   52  docker container run -it --name c2 -d ubuntu
+   53  ip a
+   54  docker inspect c2
+   55  docker exec c1 bash
+   56  docker exec -it c1 bash
+   57  docker rm -f c1 c2
+   58  docker network --help
+   59  docker network ls
+   60  docker network create -d bridge br1
+   61  docker network ls
+   62  ip a
+   63  docker container run -it --name c1 --network br1 -d ubuntu
+   64  docker ps
+   65  ip a
+   66  docker inspect c1
+   67  docker container run -it --name c2 --network br1 -d ubuntu
+   68  docker inspect c2
+   69  docker rm -f c1 c2
+   70  docker pull ramansharma95/webapp
+   71  docker pull ramansharma95/mysql
+   72  docker container run -it --name web --network br1 -p 80:80 -d ramansharma95/webapp
+   73  docker container run -it --name db --network br1  -d ramansharma95/mysql
+   74  docker exec -it db bash
+   75  docker rm -f web db
+   76  docker network rm br1
+   77  docker network ls
+   78  docker container run -it --name h1 --network host -d ubuntu
+   79  docker rm -f h1
+   80  docker container run -it --name h1 --network host -d nginx
+   81  docker inspect h1
+   82  docker ps
+   83  docker rm -f h1
+   84  docker container run -it --name n1 --network none -d ubuntu
+   85  docker inspect n1
+   86  docker network disconnect none n1
+   87  docker network connect bridge  n1
+   88  docker inspect n1
+   89  history

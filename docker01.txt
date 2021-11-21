@@ -1,0 +1,58 @@
+  1  apt update
+    2  apt install docker.io -y
+    3  history
+    4  docker --version
+    5  docker version
+    6  systemctl status docker
+    7  docker pull centos
+    8  docker images
+    9  history
+   10  docker pull centos:7
+   11  docker images
+   12  docker --help
+   13  docker pull ubuntu
+   14  docker images
+   15  docker rmi ubuntu
+   16  docker image rm centos
+   17  docker image rm centos:7
+   18  docker image --help
+   19  docker images
+   20  docker pull ubuntu
+   21  docker images
+   22  docker image ls
+   23  docker container run -it --name c1 ubuntu
+   24  docker container ls
+   25  docker ps
+   26  docker container ls --all
+   27  docker ps -a
+   28  docker container run -it --name c2 -d centos
+   29  docker ps
+   30  docker ps -a
+   31  docker start c1
+   32  docker ps
+   33  docker stop c2
+   34  docker ps -a
+   35  docker start c2
+   36  docker ps
+   37  docker kill c2
+   38  docker ps -a
+   39  history
+   40  docker exec -it c1 bash
+   41  docker ps
+   42  docker container ls --all
+   43  docker restart c2
+   44  docker container ls
+   45  docker pause c1
+   46  docker ps
+   47  docker unpause c1
+   48  docker ps
+   49  docker container rm c1
+   50  docker stop c1
+   51  docker rm c1
+   52  docker rm -f c1
+   53  docker rm -f c2
+   54  docker ps -a
+   55  docker container run -it --name web -d nginx
+   56  docker top web
+   57  docker stats web
+   58  docker inspect web

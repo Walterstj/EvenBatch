@@ -1,0 +1,71 @@
+ 131  docker container ls --all
+  132  docker container run -it --name web -p 80:80 -d ubuntu
+  133  docker ps
+  134  docker exec -it web bash
+  135  echo "<h1> This is testing for Port forwarding </h1>" >> test.html
+  136  ls
+  137  docker cp test.html web:/var/www/html
+  138  docker exec -it web bash
+  139  docker inspect web
+  140  sudo lsof -i -P -n | grep LISTEN
+
+
+   1  docker ps
+    2  docker commit web webimg
+    3  docker images
+    4  docker save webimg > webimg.tar
+    5  ls
+    6  docker rmi webimg
+    7  docker images
+    8  ls
+    9  docker load < webimg.tar
+   10  docker images
+   11  docker container -it --name c1 -d ubuntu
+   12  docker container run -it --name c1 -d ubuntu
+   13  docker ps
+   14  docker export c1 -o c1.tar
+   15  ls
+   16  docker import c1.tar img1
+   17  docker images
+   18  docker rmi img1
+   19  docekr images
+   20  docker images
+   21  docker rmi repo.docker.kmit:5000/mynginx
+   22  docker images
+   23  docker image tag webimg ramansharma95/webimg
+   24  docker images
+   25  docker login
+   26  docker logout
+   27  docker login
+   28  docker push webimg
+   29  docker push ramansharma95/webimg
+   30  docker ps
+   31  docker rm -f web c1
+   32  docker images
+   33  docker rmi ramansharma95/webimg
+   34  docker images
+   35  docker container ls
+   36  docker inspect local_registry
+   37  ls /var/lib/docker/volumes/2dedb2b33cc13c2775d50cfa32d0f925973c1c5688b44f7f1703c13445ba564b/_data
+   38  docker images
+   39  docker image tag webimg localhost:5000/webimg
+   40  docker imags
+   41  docker images
+   42  docker push localhost:5000/webimg
+   43  ls /var/lib/docker/volumes/2dedb2b33cc13c2775d50cfa32d0f925973c1c5688b44f7f1703c13445ba564b/_data
+   44  ls /var/lib/docker/volumes/2dedb2b33cc13c2775d50cfa32d0f925973c1c5688b44f7f1703c13445ba564b/_data/docker/registry/v2/
+   45  ls /var/lib/docker/volumes/2dedb2b33cc13c2775d50cfa32d0f925973c1c5688b44f7f1703c13445ba564b/_data/docker/registry/v2/repositories/
+   46  docker images
+   47  docker rmi localhost:5000/webimg
+   48  docker images
+   49  docker pull localhost:5000/webimg
+   50  docker images
+   51  vi Dockerfile
+   52  docker build . -t myimg
+   53  docker images
+   54  docker container run -it --name m1 -d myimg
+   55  docker ps
+   56  docekr exec -it m1 bash
+   57  docker exec -it m1 bash
+   58  docker image inspect myimg
+   59  docker image history myimg
