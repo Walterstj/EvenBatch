@@ -56,3 +56,6 @@
    56  docker top web
    57  docker stats web
    58  docker inspect web
+   56  docker stop web
+   57  docker stats web
+   58  docker inspect web
